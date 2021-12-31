@@ -6,7 +6,7 @@ do
     case $REPLY in 
         1) . ./createDB.sh;;
         2) ls  /DBs;;
-        3) . ./connectDb.sh;;
-        4) . ./dropDb.sh;;
+        3) . ./connectDB.sh;;
+        4) . ./dropDB.sh;;
     esac
 done
