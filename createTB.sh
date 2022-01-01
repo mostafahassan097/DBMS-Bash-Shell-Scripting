@@ -8,6 +8,8 @@ then
     if [ -f $Path/$DBname/$TBname ]
     then 
     echo "Sorry Table Name is already exists";
+    sleep 2;
+    ./connectDB.sh;
     else
     touch $Path/$DBname/$TBname;
     echo "Table Created Successfully";
@@ -23,23 +25,23 @@ then
                     read colname;
                     while [ $flag -eq 0 ]
                     do
-                        echo "Do you Want This Column As PRIMARY KEY(y/n)?";
+                        echo "Do you Want This Column To Be PRIMARY KEY(y/n)?";
                         read pk;
                         if [[ $pk == "Y" || $pk == "y" ]]
                         then
                             flag=1;
-                            echo -n "[PK]" >> $Path/$DBname/$TBname;
+                            echo -n ":#PK:" >> $Path/$DBname/$TBname;
                         else
                             break;
                         fi
                     done
-                    echo "Please Choose Datetype For Column {int | string} ?"
+                    echo "Please Choose Datatype For Column {int | string} ?"
                        read dataType;
                             case $dataType in 
-                                int) 
-                                echo -n $colname"[$dataType] " >> $Path/$DBname/$TBname ;;
-                                string)  
-                                echo -n $colname"[$dataType] " >> $Path/$DBname/$TBname ;;
+                                "int") 
+                                echo -n $colname":$dataType: " >> $Path/$DBname/$TBname ;;
+                                "string")  
+                                echo -n $colname":$dataType: " >> $Path/$DBname/$TBname ;;
                                 *) 
                                 echo "Not an Option !!";
                                 ((i = $i - 1));;
@@ -47,6 +49,7 @@ then
                 done
                 echo "Your Table Create Successfully ";
                 sleep 2;
+                clear;
                 . ./connectDB.sh;
         else
             echo "Sorry You Must Enter Number For Columns !!";
