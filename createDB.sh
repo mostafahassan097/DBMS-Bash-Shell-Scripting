@@ -13,7 +13,7 @@ then
      read -p "Do You Want Create Tables?" c
         case "$c" in 
         y|Y ) sleep 2 ; . ./createTB.sh;;
-        n|N ) echo "no" sleep 2 ; . ./main.sh;;
+        n|N ) echo "no" ; sleep 2 ; . ./main.sh;;
         * ) echo "invalid";;
         esac
     fi;
