@@ -30,7 +30,7 @@ then
                         if [[ $pk == "Y" || $pk == "y" ]]
                         then
                             flag=1;
-                            echo -n ":#PK:" >> $Path/$DBname/$TBname;
+                            echo -n "#PK:" >> $Path/$DBname/$TBname;
                         else
                             break;
                         fi
@@ -39,9 +39,9 @@ then
                        read dataType;
                             case $dataType in 
                                 "int") 
-                                echo -n $colname":$dataType: " >> $Path/$DBname/$TBname ;;
+                                echo -n $colname":$dataType|" >> $Path/$DBname/$TBname ;;
                                 "string")  
-                                echo -n $colname":$dataType: " >> $Path/$DBname/$TBname ;;
+                                echo -n $colname":$dataType|" >> $Path/$DBname/$TBname ;;
                                 *) 
                                 echo "Not an Option !!";
                                 ((i = $i - 1));;
@@ -60,5 +60,5 @@ then
 else
     echo "Sorry Table Name Must Be Only Alphabet!!";
     sleep 2;
-    . ./createDB.sh;
+    . ./connectDB.sh;
 fi;
