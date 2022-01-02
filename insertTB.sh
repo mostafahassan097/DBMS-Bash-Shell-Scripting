@@ -29,9 +29,9 @@ if [[ -f $table ]]
 		read answer
 		case $answer in
 			y)
-			./createTB;;
+			./createTB.sh;;
 			n)
-			./insertTB;;
+			./insertTB.s;;
 			*)
 			echo "Incorrect answer. Redirecting to main menu.." ;
 			sleep 2;
@@ -39,3 +39,38 @@ if [[ -f $table ]]
 		esac
         
 	fi
+
+
+function checkType {
+datatype=`grep PK $table | cut -f$1 -d" "`
+if [[ "$datatype" == *"int"* ]]
+then
+	num='^[0-9]+$'
+	if ! [[ $2 =~ $num ]]
+	then
+		echo "False input: Not a number!"
+		return 1
+	else
+		checkPK $1 $2
+	fi
+elif [[ "$datatype" == *"string"* ]]
+then
+	str='^[a-zA-Z]+$'
+	if ! [[ $2 =~ $str ]]
+	then
+		echo "False input: Not a valid string!"
+		return 1
+	else
+		checkPK $1 $2
+	fi
+fi
+}
+function checkPK {
+header=`grep PK $table | cut -f$1 -d" "`
+if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $table | grep -w $2` ]]
+then
+	echo $'\nPrimary Key already exists. no duplicates allowed!' 
+	return 1
+fi
+fi
+}
