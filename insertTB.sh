@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 #!/bin/bash
 echo "Please enter table name to insert data: "
 read TBname
-if [[ -f $TBname ]]
+if [[ -f $Path/$DBname/$TBname ]]
 	then
 	           
 	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
@@ -19,7 +18,7 @@ if [[ -f $TBname ]]
 	        	then
 	        		(( i = $i - 1 ))
 	        	else	
-	        		echo -n $data" " >> $Path/$DBname/$TBname
+	        		echo -n $data"|" >> $Path/$DBname/$TBname
 			fi
 	        done	
 	        echo $'\n' >> $Path/$DBname/$TBname
@@ -43,7 +42,7 @@ if [[ -f $TBname ]]
 
 
 function checkType {
-datatype=`grep PK $Path/$DBname/$TBname| cut -f$1 -d" "`
+datatype=`grep PK $Path/$DBname/$TBname | cut -f$1 -d"|"`
 if [[ "$datatype" == *"int"* ]]
 then
 	num='^[0-9]+$'
@@ -67,8 +66,8 @@ then
 fi
 }
 function checkPK {
-header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
-if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
+header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d"|"`
+if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d"|" $Path/$DBname/$TBname | grep -w $2` ]]
 then
 	echo $'\nPrimary Key already exists. no duplicates allowed!' 
 	return 1
