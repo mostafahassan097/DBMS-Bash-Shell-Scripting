@@ -4,7 +4,6 @@ read DBname;
 
 if  [[ $DBname =~ ^[a-zA-Z]+$ ]]
 then
-export $DBname;
     if [ -d $Path/$DBname ]
     then 
     echo "Sorry Database is already exists";
@@ -20,7 +19,7 @@ export $DBname;
         esac
     fi;
 else
-    echo "Sorry Database Name Must Be Only Alpha!!";
+    echo "Sorry Database Name Must Be Only Alphabet !!";
     sleep 2;
     . ./createDB.sh;
 fi;
