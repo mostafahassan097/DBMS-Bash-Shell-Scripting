@@ -1,16 +1,16 @@
 <<<<<<< HEAD
 #!/bin/bash
 echo "Please enter table name to insert data: "
-read table
-if [[ -f $table ]]
+read TBname
+if [[ -f $TBname ]]
 	then
 	           
-	        x=`grep 'PK' $table | wc -w`
+	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
 	        
-	        awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $table
+	        awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname;
 	        for((i=1;i <= x;i++)) 
 	        do      
-	        	columnName=`grep PK $table | cut -f$i -d"|"`
+	        	columnName=`grep PK $Path/$DBname/$TBname | cut -f$i -d"|"`
 	        	echo $'\n'
 	        	echo $"Please enter data for field no.$i [$columnName]"
 	        	read data 
@@ -19,11 +19,11 @@ if [[ -f $table ]]
 	        	then
 	        		(( i = $i - 1 ))
 	        	else	
-	        		echo -n $data" " >> $table
+	        		echo -n $data" " >> $Path/$DBname/$TBname
 			fi
 	        done	
-	        echo $'\n' >> $table
-		echo "insert done into $table"
+	        echo $'\n' >> $Path/$DBname/$TBname
+		echo "insert done into $TBname"
 	else
 		echo "Table doesn't exist"
 		echo "Do you want to create it? [y/n]"
@@ -32,7 +32,7 @@ if [[ -f $table ]]
 			y)
 			./createTB.sh;;
 			n)
-			./insertTB.s;;
+			./insertTB.sh;;
 			*)
 			echo "Incorrect answer. Redirecting to main menu.." ;
 			sleep 2;
@@ -43,7 +43,7 @@ if [[ -f $table ]]
 
 
 function checkType {
-datatype=`grep PK $table | cut -f$1 -d" "`
+datatype=`grep PK $Path/$DBname/$TBname| cut -f$1 -d" "`
 if [[ "$datatype" == *"int"* ]]
 then
 	num='^[0-9]+$'
@@ -67,8 +67,8 @@ then
 fi
 }
 function checkPK {
-header=`grep PK $table | cut -f$1 -d" "`
-if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $table | grep -w $2` ]]
+header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
+if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
 then
 	echo $'\nPrimary Key already exists. no duplicates allowed!' 
 	return 1
