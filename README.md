@@ -1,2 +1,2 @@
-# Database Search Engine Using Bash Scrpiting
+# Database Search Engine Using Bash Scripting
 Simple Dataebase Engine That Simulate Simple DBMS Operations.

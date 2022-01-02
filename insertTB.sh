@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/bash
 echo "Please enter table name to insert data: "
 read table
