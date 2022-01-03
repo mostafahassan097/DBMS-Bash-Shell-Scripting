@@ -1,28 +1,61 @@
 #!/bin/bash
-
-	echo "Please Enter database name to connect it: "
-	read DBname
-	if [[ -d $Path ]]
-	then 
-	       clear
-	       echo "Connect Successfully To $DBname "
-PS3="Please Enter Your Option :";
-select opt in "Create Table" "List All Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back to Menu"
-do
-    case $REPLY in 
-        1) . ./createTB.sh;;
-        2) ls  $Dbname;;
-        3) . ./dropTB.sh;;
-        4) . ./insertTB.sh;;
-        5) . ./selectTB.sh;;
-        6) . ./deleteTB.sh;;
-        7) . ./updateTB.sh;;
-        8) . ./main.sh;;
-        9) exit;;
-        *) echo "Not an Option !!";;
-    esac
-done
-else 
+	function checkType {
+datatype=`grep PK $table | cut -f$1 -d" "`
+if [[ "$datatype" == *"int"* ]]
+then
+	num='^[0-9]+$'
+	if ! [[ $2 =~ $num ]]
+	then
+		echo "False input: Not a number!"
+		return 1
+	else
+		checkPK $1 $2
+	fi
+elif [[ "$datatype" == *"string"* ]]
+then
+	str='^[a-zA-Z]+$'
+	if ! [[ $2 =~ $str ]]
+	then
+		echo "False input: Not a valid string!"
+		return 1
+	else
+		checkPK $1 $2
+	fi
+fi
+}
+function checkPK {
+header=`grep PK $table | cut -f$1 -d" "`
+if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $table | grep -w $2` ]]
+then
+	echo $'\nPrimary Key already exists. no duplicates allowed!' 
+	return 1
+fi
+fi
+}
+echo "Please Enter database name to connect it: "
+read DBname
+if  [[ $DBname =~ ^[a-zA-Z]+$ ]]
+then
+    if [ -d $Path/$DBname ]
+    then 
+    echo "You Connected Succesfully To $DBname";
+	PS3="Please Enter Your Option :";
+	select opt in "Create Table" "List All Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back to Menu"
+	do
+		case $REPLY in 
+			1) . ./createTB.sh;;
+			2) ls  $Path/$DBname ;;
+			3) . ./dropTB.sh;;
+			4) . ./insertTB.sh;;
+			5) . ./selectTB.sh;;
+			6) . ./deleteTB.sh;;
+			7) . ./updateTB.sh;;
+			8) . ./main.sh;;
+			9) exit;;
+			*) echo "Not an Option !!";;
+		esac
+	done
+    else 
 		echo "no database with $DBname name"
 		echo $'\nDo you want to create it? [y/n]\n'
 		read answer
@@ -32,8 +65,34 @@ else
 			n)
 			./connectDB.sh;;
 			*)
-			echo "Incorect answer, Redirecting to main menu.." ;
+			echo "Back To Main Menu.." ;
 			sleep 2
+			clear;
 			./main.sh;;	
 		esac
-	fi	
+   
+    fi;
+else
+    echo "Sorry Database Name Must Be Only Alphabet !!";
+    sleep 2;
+    . ./createDB.sh;
+fi;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
