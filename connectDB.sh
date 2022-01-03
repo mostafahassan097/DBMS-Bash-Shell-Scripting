@@ -1,6 +1,8 @@
 #!/bin/bash
-	function checkType {
-datatype=`grep PK $table | cut -f$1 -d" "`
+
+#Check DateType
+function checkType {
+datatype=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
 if [[ "$datatype" == *"int"* ]]
 then
 	num='^[0-9]+$'
@@ -23,15 +25,17 @@ then
 	fi
 fi
 }
+#Check Primary Kry function
 function checkPK {
-header=`grep PK $table | cut -f$1 -d" "`
-if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $table | grep -w $2` ]]
+header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
+if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
 then
 	echo $'\nPrimary Key already exists. no duplicates allowed!' 
 	return 1
 fi
 fi
 }
+
 echo "Please Enter database name to connect it: "
 read DBname
 if  [[ $DBname =~ ^[a-zA-Z]+$ ]]
