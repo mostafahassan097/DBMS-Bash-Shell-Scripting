@@ -20,18 +20,23 @@ if [[ -f $Path/$DBname/$TBname ]]
 	        		(( i = $i - 1 ))
 	        	else	
 	        		echo -n $data" " >> $Path/$DBname/$TBname
+					
 			fi
 	        done	
 		echo "insert done into $TBname"
+		sleep 1
+		clear
+					echo "Back To Main Menu For Tables ..."
+					. ./connectDB.sh
 	else
 		echo "Table doesn't exist"
 		echo "Do you want to create it? [y/n]"
 		read answer
 		case $answer in
 			y)
-			./createTB.sh;;
+			. ./createTB.sh;;
 			n)
-			./insertTB.sh;;
+			. ./insertTB.sh;;
 			*)
 			echo "Incorrect answer. Redirecting to main menu.." ;
 			sleep 2;

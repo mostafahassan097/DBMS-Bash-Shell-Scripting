@@ -1,3 +1,10 @@
-(PK)id(int) name(string) address(string)
-2 sambo alex 
-3 ahmed alex 
+(PK)id(int) name(string) address(string) age(int) 
+1mostafacairo24
+1
+2 ahmed alex 25 
+3 sambo cairo 25 
+4 kamal alex 28 
+5 
+7 kareem cairo 25 
+8 ahmed cairo 25 
+9 samir cairo 26 

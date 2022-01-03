@@ -1,5 +1,6 @@
 #!/bin/bash
 Path=$HOME/dbms-bash/DBs
+export Path
 PS3="Please Enter Your Option :";
 select opt in "Create Database" "List All Databases" "Connect Database" "Drop Database" "Exit"
 do

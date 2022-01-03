@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Please Enter Table Name To Select Date Form: "
 read TBname
-if [[ -f $Path/$DBname/$TBname ]]
+if [[ -f $HOME/dbms-bash/DBs/$DBname/$TBname ]]
 then
 	echo $'\n'
         awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
@@ -29,7 +29,7 @@ then
 		read value
 		echo $'\nWould you like to print a specific field? [y/n]'
 		read cut
-		if [[ $cut == "Y" || $cut == "y" || $cut == "yes" ]]
+		if [[ $cut == "Y" || $cut == "y"  ]]
 		then
 			echo $'\nPlease specify field number: '
 			read field
@@ -44,15 +44,14 @@ then
 	fi
 	echo $'\nWould you like to make another query? [y/n]'
 	read answer
-	if [[ $answer == "Y" || $answer == "y" || $answer == "yes" ]]
+	if [[ $answer == "Y" || $answer == "y"  ]]
 	then
-		clear
-		./selectTB.sh
-	elif [[ $answer == "N" || $answer == "n" || $answer == "no" ]]
+	 .  ./selectTB.sh
+	elif [[ $answer == "N" || $answer == "n"  ]]
 	then	
 		clear
 		
-	./connectDB.sh
+	 . ./connectDB.sh
 	else
 		echo "Redirecting to main menu.."
 		sleep 2
@@ -64,9 +63,9 @@ else
 	read answer
 	case $answer in
 		y)
-		./connectDB.sh;;
+		. ./createTB.sh;;
 		n)
-		./connectDB.sh;;
+		. ./connectDB.sh;;
 		*)
 		echo "Incorrect answer. Redirecting to main menu.." ;
 		sleep 2;

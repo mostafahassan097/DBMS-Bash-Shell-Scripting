@@ -26,6 +26,7 @@ then
 fi
 }
 #Check Primary Kry function
+
 function checkPK {
 header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
 if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
