@@ -47,7 +47,7 @@ then
 	if [[ $answer == "Y" || $answer == "y" || $answer == "yes" ]]
 	then
 		clear
-		./selectTb.sh
+		./selectTB.sh
 	elif [[ $answer == "N" || $answer == "n" || $answer == "no" ]]
 	then	
 		clear
