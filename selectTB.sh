@@ -1,19 +1,19 @@
 #!/bin/bash
-echo "Please enter table name to select data: "
+echo "Please Enter Table Name To Select Date Form: "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 then
 	echo $'\n'
         awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
-        echo $'\nWould you like to print all records? [y/n]'
-        read printall
-        if [[ $printall == "Y" || $printall == "y" || $printall == "yes" ]]
+        echo $'\n Do You Want Display All Records ? [Y/N]'
+        read all
+        if [[ $all == "Y" || $all == "y"  ]]
         then
-        	echo $'\nWould you like to print a specific field? [y/n]'
-		read cut1
-		if [[ $cut1 == "Y" || $cut1 == "y" || $cut1 == "yes" ]]
+        	echo $'\nDo You Want Print Specific Field ?[Y/N]'
+		read fld
+		if [[ $fld == "Y" || $fld == "y" ]]
 		then
-			echo $'\nPlease specify field number: '
+			echo $'\nPlease Enter Field Number You Want  Select : '
 			read field1
 			echo $'========================================================================='
 			awk $'{print $0\n}' $Path/$DBname/$TBname | cut -f$field1 -d" "
@@ -64,9 +64,9 @@ else
 	read answer
 	case $answer in
 		y)
-		./createTB.sh;;
+		./connectDB.sh;;
 		n)
-		./selectTB.sh;;
+		./connectDB.sh;;
 		*)
 		echo "Incorrect answer. Redirecting to main menu.." ;
 		sleep 2;

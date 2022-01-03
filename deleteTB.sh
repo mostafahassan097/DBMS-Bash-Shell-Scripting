@@ -29,7 +29,7 @@ else
 		Y)
 		./createTB.sh ;;
 		N)
-		./deleteT.sh ;;
+		./deleteTB.sh ;;
 		*)
 		echo "Incorrect answer. Redirecting to main menu.." ;
 		sleep 2;
