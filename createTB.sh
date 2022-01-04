@@ -1,5 +1,5 @@
 #!/bin/bash
-clear;
+clear
 
 echo "Please Enter Table Name :";
 read TBname;
@@ -7,9 +7,9 @@ if  [[ $TBname =~ ^[a-zA-Z]+$ ]]
 then
     if [ -f $Path/$DBname/$TBname ]
     then 
-    echo "Sorry Table Name is already exists";
+    echo "Sorry Table Name is Already Exists";
     sleep 2;
-    ./connectDB.sh;
+    . ./createTB.sh;
     else
     touch $Path/$DBname/$TBname;
     echo "Table Created Successfully";
@@ -30,7 +30,7 @@ then
                         if [[ $pk == "Y" || $pk == "y" ]]
                         then
                             flag=1;
-                            echo -n "(PK)" >> $Path/$DBname/$TBname;
+                            echo -n "#PK:" >> $Path/$DBname/$TBname;
                         else
                             break;
                         fi
@@ -39,9 +39,9 @@ then
                        read dataType;
                             case $dataType in 
                                 "int") 
-                                echo -n $colname"($dataType) " >> $Path/$DBname/$TBname ;;
+                                echo -n $colname":$dataType:|" >> $Path/$DBname/$TBname ;;
                                 "string")  
-                                echo -n $colname"($dataType) " >> $Path/$DBname/$TBname ;;
+                                echo -n $colname":$dataType:|" >> $Path/$DBname/$TBname ;;
                                 *) 
                                 echo "Not an Option !!";
                                 ((i = $i - 1));;
@@ -54,11 +54,11 @@ then
         else
             echo "Sorry You Must Enter Number For Columns !!";
                 sleep 2;
-                . ./connectDB.sh;
-        fi;1
+                . ./createTB.sh;
+        fi;
     fi;
 else
     echo "Sorry Table Name Must Be Only Alphabet!!";
     sleep 2;
-    . ./connectDB.sh;
+    . ./connectTB.sh;
 fi;

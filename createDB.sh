@@ -9,13 +9,13 @@ then
     echo "Sorry Database is already exists";
     else
     mkdir $Path/$DBname;
-    echo "Database Created Successfully";
+    echo "$DBname Database Created Successfully";
         sleep 2;
      read -p "Do You Want Create Tables [y\n]? " c
         case "$c" in 
-        y|Y ) sleep 2 ; . ./createTB.sh;;
-        n|N ) echo "no" ; sleep 2 ; . ./main.sh;;
-        * ) echo "invalid";;
+        y|Y ) echo "Yes" sleep 2 ; . ./createTB.sh;;
+        n|N ) echo "No" ; sleep 2 ; . ./main.sh;;
+        * ) echo "Not An Option !!";;
         esac
     fi;
 else
