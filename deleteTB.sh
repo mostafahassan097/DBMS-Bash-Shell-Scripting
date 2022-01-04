@@ -27,11 +27,11 @@ else
 	read answer
 	case $answer in
 		Y)
-		./createTB.sh ;;
+		 . ./createTB.sh ;;
 		N)
-		./deleteTB.sh ;;
+		. ./deleteTB.sh ;;
 		*)
-		echo "Incorrect answer. Redirecting to main menu.." ;
+		echo "Not an Option Back to main menu.." ;
 		sleep 2;
 		./main.sh;;			
 	esac

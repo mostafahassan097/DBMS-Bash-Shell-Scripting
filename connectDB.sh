@@ -1,43 +1,8 @@
 #!/bin/bash
+#Functions To Validate DataType And Primary Key
 
-#Check DateType
-function checkType {
-datatype=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
-if [[ "$datatype" == *"int"* ]]
-then
-	num='^[0-9]+$'
-	if ! [[ $2 =~ $num ]]
-	then
-		echo "False input: Not a number!"
-		return 1
-	else
-		checkPK $1 $2
-	fi
-elif [[ "$datatype" == *"string"* ]]
-then
-	str='^[a-zA-Z]+$'
-	if ! [[ $2 =~ $str ]]
-	then
-		echo "False input: Not a valid string!"
-		return 1
-	else
-		checkPK $1 $2
-	fi
-fi
-}
-#Check Primary Kry function
 
-function checkPK {
-header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
-if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
-then
-	echo $'\nPrimary Key already exists. no duplicates allowed!' 
-	return 1
-fi
-fi
-}
-
-echo "Please Enter database name to connect it: "
+echo "Please Enter Database Name To Connect It :"
 read DBname
 if  [[ $DBname =~ ^[a-zA-Z]+$ ]]
 then
@@ -61,19 +26,19 @@ then
 		esac
 	done
     else 
-		echo "no database with $DBname name"
-		echo $'\nDo you want to create it? [y/n]\n'
+		echo "No Database With This Name $DBname"
+		echo $'\nDo You Want Create It ? [y/n]\n'
 		read answer
 		case $answer in
 			y)
-			./createDB.sh;;
+			. ./createDB.sh;;
 			n)
-			./connectDB.sh;;
+			. ./connectDB.sh;;
 			*)
 			echo "Back To Main Menu.." ;
 			sleep 2
 			clear;
-			./main.sh;;	
+			 . ./main.sh;;	
 		esac
    
     fi;

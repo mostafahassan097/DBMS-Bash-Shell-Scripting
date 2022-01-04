@@ -1,20 +1,22 @@
 #!/bin/bash
-echo "Please enter table name to insert data: "
+clear
+. ./ValidationsFunction.sh
+echo "Please Enter Table Name To Insert Data Into : "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 	then
 	           
 	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
 	        
-	        awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
+	     awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
 			echo -e  >> $Path/$DBname/$TBname
 	        for((i=1;i <= x;i++)) 
 	        do      
-	        	columnName=`grep PK $Path/$DBname/$TBname | cut -f$i -d" "`
+	        	colName=`grep PK $Path/$DBname/$TBname | cut -f$i -d"|"`
 	        	
-	        	echo $"Please enter data for field no.$i [$columnName]"
+	        	echo $"Please  Enter Data For Column NO.$i [$colName]"
 	        	read data 
-			checkType $i $data
+			checkDataType $i $data
 	        	if [[ $? != 0 ]]
 	        	then
 	        		(( i = $i - 1 ))
@@ -23,25 +25,24 @@ if [[ -f $Path/$DBname/$TBname ]]
 					
 			fi
 	        done	
-		echo "insert done into $TBname"
-		sleep 1
-		clear
-					echo "Back To Main Menu For Tables ..."
+		echo "Insert Done To $TBname"
+					sleep 1
+					echo "Back To  Menu For Tables ..."
 					. ./connectDB.sh
 	else
-		echo "Table doesn't exist"
-		echo "Do you want to create it? [y/n]"
-		read answer
-		case $answer in
+		echo "Table Doesn't Exist"
+		echo "Do You Want To Create it? [y/n]"
+		read ans
+		case $ans in
 			y)
 			. ./createTB.sh;;
 			n)
 			. ./insertTB.sh;;
 			*)
-			echo "Incorrect answer. Redirecting to main menu.." ;
+			echo "Not An Option Back To Main .. " ;
 			sleep 2;
 		
-			./main.sh;;	
+			. ./main.sh;;	
 		esac
         
 	fi
