@@ -47,14 +47,16 @@ then
 						read answer
 						case $answer in
 							Y|y)
-							sleep 1;
 							. ./updateTB.sh;;
 							
 							N|n)
-							sleep 1;
-							. ./connectDB.sh;;
-							*) sleep 1; 
-							echo "Not Valid Option " 
+							. ./main.sh;;
+
+							*)echo "Not Valid Option " ;
+							  . ./main.sh
+							  ;; 
+							 
+							
 										
 						esac
 				fi
