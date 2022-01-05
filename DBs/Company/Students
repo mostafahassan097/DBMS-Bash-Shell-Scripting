@@ -1,3 +1,6 @@
 #PK:ssn:int: name:string: grade:int: 
-1 ahmed 5 
-2 heba 6 
+1             ahmed         5
+2             heba          6
+3             mona          7
+
+
