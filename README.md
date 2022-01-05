@@ -4,7 +4,7 @@ Simple Dataebase Search Engine That Simulate Simple DBMS CRUD Operations.
 
 # Project Description
 
-Database Management System using Bash scripting In this simple DBMS Consist of  3 Layers.
+Database Management System using Bash scripting In this simple DBMS Consist of  2 Layers.
 
 ## Database Layer 1
 
