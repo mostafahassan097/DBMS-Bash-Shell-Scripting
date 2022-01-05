@@ -39,9 +39,9 @@ then
                        read dataType;
                             case $dataType in 
                                 "int") 
-                                echo -n $colname":$dataType:|" >> $Path/$DBname/$TBname ;;
+                                echo -n $colname":$dataType: " >> $Path/$DBname/$TBname ;;
                                 "string")  
-                                echo -n $colname":$dataType:|" >> $Path/$DBname/$TBname ;;
+                                echo -n $colname":$dataType: " >> $Path/$DBname/$TBname ;;
                                 *) 
                                 echo "Not an Option !!";
                                 ((i = $i - 1));;

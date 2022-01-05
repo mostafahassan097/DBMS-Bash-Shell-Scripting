@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Please enter table name to update data: "
+echo "Please Enter Table Name To Update Data: "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 then
@@ -13,7 +13,7 @@ then
 	then
 		echo "Incorrect field number. Redirecting.."
 		sleep 2
-		./updateTB.sh
+		. ./updateTB.sh
 	else
 		echo "Please Enter Old Value You Want Update "
 		read old
@@ -28,14 +28,14 @@ then
 				then
 					echo "Incorrect data type entry. Redirecting.."
 					sleep 2
-					./updateTB.sh
+					. ./updateTB.sh
 				else	
 					 gawk -v oldval=$old -v newval=$new -v colnum=$fnum -i inplace '{ gsub(oldval, newval, $colnum) }; { print }' $Path/$DBname/$TBname
 					echo $'Record(s) updated successfully!'
 				fi
 		else
 			echo $'No such value in the table!'
-			./updateTB.sh
+			. ./updateTB.sh
 		fi
 	fi
 else
@@ -44,12 +44,12 @@ else
 	read answer
 	case $answer in
 		Y)
-		./createTB.sh;;
+		. ./createTB.sh;;
 		N)
-		./updateTB.sh;;
+		. ./updateTB.sh;;
 		*)
-		echo "Incorrect answer. Redirecting to main menu.." ;
+		echo "Back To Main Menu.." ;
 		sleep 2;
-		./main.sh;;			
+		. ./main.sh;;			
 	esac
 	fi
