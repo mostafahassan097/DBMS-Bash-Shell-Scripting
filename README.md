@@ -36,6 +36,6 @@ Installing DBMS BASH
 ```
     
 ## Authors
-- [Mohammed Sambo](https://github.com/sambo2021)
 - [Mostafa Hassan](https://github.com/mostafahassan097)
+- [Mohammed Sambo](https://github.com/sambo2021)
 
