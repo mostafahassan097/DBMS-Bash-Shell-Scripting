@@ -30,7 +30,7 @@ then
 					sleep 2
 					. ./updateTB.sh
 				else	
-					 gawk -v oldval=$old -v newval=$new -v colnum=$fnum -i inplace '{ gsub(oldval, newval, $colnum) }; { print }' $Path/$DBname/$TBname
+					 awk -v oldval=$old -v newval=$new -v colnum=$fnum -i inplace '{ gsub(oldval, newval, $colnum) }; { print }' $Path/$DBname/$TBname
 					echo $'Record(s) updated successfully!'
 				fi
 		else

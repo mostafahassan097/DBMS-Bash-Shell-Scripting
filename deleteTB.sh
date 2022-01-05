@@ -14,7 +14,7 @@ then
 	echo $'\n'
 	if cut -f$field -d" " $Path/$DBname/$TBname | grep -w -q ${value} 
 	then
-		gawk -v gValue=$value -v gField=$field -i inplace '{ gsub(gValue, "deleteThis", $gField) }; { print }' $Path/$DBname/$TBname
+		awk -v gValue=$value -v gField=$field -i inplace '{ gsub(gValue, "deleteThis", $gField) }; { print }' $Path/$DBname/$TBname
 		sed -i '/deleteThis/d' $Path/$DBname/$TBname
 		echo $'Record(s) deleted successfully!\n'
 	else
