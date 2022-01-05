@@ -36,4 +36,3 @@ fi
 fi
 }
 
-echo "From Functions Script"

@@ -1,15 +1,15 @@
 #!/bin/bash
-echo "Please enter table name to delete from: "
+echo "Please Enter Table Name To Delete From: "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 then
 	echo $'\n'
 	awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
 	echo $'\n'
-	echo "Please enter field number to find value: "
+	echo "Please Enter Field Number To Find Value: "
 	read field
 	echo $'\n'
-	echo "Please enter field value to delete record(s): "
+	echo "Please Enter Field Value To Delete Record(s): "
 	read value
 	echo $'\n'
 	if cut -f$field -d" " $Path/$DBname/$TBname | grep -w -q ${value} 

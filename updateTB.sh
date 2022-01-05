@@ -1,10 +1,11 @@
 #!/bin/bash
+. ./ValidationsFunction.sh
 echo "Please Enter Table Name To Update Data: "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 then
 	echo $'\n'
-	awk '{if (NR==1) {for(i=1;i<=NF;i++)}}' $TBname;
+	awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
 	echo $'\n'
 	echo "Please Enter Number Of Field You Want Update: "
 	read fnum
@@ -15,15 +16,20 @@ then
 		sleep 2
 		. ./updateTB.sh
 	else
+					 echo "\n $TBname Before Update"
+					echo $'========================================================================='
+					column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
+					echo $'=========================================================================\n'	
+	        
 		echo "Please Enter Old Value You Want Update "
 		read old
 		echo ""
-		if grep "${old}" $table >> /dev/null
+		if grep "${old}" $Path/$DBname/$TBname >> /dev/null
 		then
 			echo "Please Enter New Value : "
 			read new
 
-			checkType $fnum $new
+			checkDataType $fnum $new
 			if [[ $? != 0 ]]
 				then
 					echo "Incorrect data type entry. Redirecting.."
@@ -32,6 +38,26 @@ then
 				else	
 					 awk -v oldval=$old -v newval=$new -v colnum=$fnum -i inplace '{ gsub(oldval, newval, $colnum) }; { print }' $Path/$DBname/$TBname
 					echo $'Record(s) updated successfully!'
+					echo $'\n'
+					echo "$TBname After Updated"
+					echo $'========================================================================='
+					column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
+					echo $'=========================================================================\n'	
+
+					echo "Do You Want To Update More Records ? [y/n]"
+					read ans
+					case $ans in
+						y)
+						. ./updateTB.sh;;
+						n) echo "Back To Table Menu"
+						. ./connectDB.sh;;
+						*)
+						echo "Not An Option Back To Main .. " ;
+						sleep 2;
+
+						. ./main.sh;;
+						esac
+	        
 				fi
 		else
 			echo $'No such value in the table!'
