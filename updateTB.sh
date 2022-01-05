@@ -4,11 +4,13 @@ echo "Please Enter Table Name To Update Data: "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 then
+
 	echo $'\n'
 	awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
 	echo $'\n'
 	echo "Please Enter Number Of Field You Want Update: "
 	read fnum
+	
 	totalFields=`awk '{print NF}' $Path/$DBname/$TBname | head -1`
 	if [[ $fnum -gt $totalFields || $fnum -lt 1 ]]
 	then
@@ -31,11 +33,11 @@ then
 
 			checkDataType $fnum $new
 			if [[ $? != 0 ]]
-				then
+			then
 					echo "Incorrect data type entry. Redirecting.."
 					sleep 2
 					. ./updateTB.sh
-				else	
+			else	
 					 awk -v oldval=$old -v newval=$new -v colnum=$fnum -i inplace '{ gsub(oldval, newval, $colnum) }; { print }' $Path/$DBname/$TBname
 					echo $'Record(s) updated successfully!'
 					echo $'\n'
@@ -58,7 +60,7 @@ then
 						. ./main.sh;;
 						esac
 	        
-				fi
+			fi
 		else
 			echo $'No such value in the table!'
 			. ./updateTB.sh
