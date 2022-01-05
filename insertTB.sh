@@ -8,7 +8,7 @@ if [[ -f $Path/$DBname/$TBname ]]
 	           
 	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
 	        
-	     awk '{if (NR==1) {for(i=1;i<=NF;i++){printf "    |    "$i}{print "    |"}}}' $Path/$DBname/$TBname
+			column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 			echo -e  >> $Path/$DBname/$TBname
 	        for((i=1;i <= x;i++)) 
 	        do      

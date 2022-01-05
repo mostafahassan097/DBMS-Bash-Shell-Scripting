@@ -8,23 +8,25 @@ read TBname
 if [ -f  $Path/$DBname/$TBname ]
 then
     echo "Are you sure you want to delete $TBname"
-    select choice in 'y' 'n'
-        do 
+    read choice
             case $choice in
-            'y') 
+            y|Y) 
                 rm $Path/$DBname/$TBname
                 echo "$TBname Deleted Successfully"
                 echo "Recent Tables For $DBname"
                 echo "======================================================="
                 ls $Path/$DBname
-                break
+                sleep 2
+                clear 
+                sleep 2
+                . ./connectDB.sh
                 ;;
-            'n') 
+            n|N) 
                 break
                 ;;
             *) echo "Choose Valid Option" ;;
             esac
-            done
+            
 else
     echo "$TBname Doesn't exist!"
 fi
