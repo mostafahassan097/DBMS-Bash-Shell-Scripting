@@ -5,6 +5,9 @@ echo "Please Enter Table Name To Insert Data Into : "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 	then
+
+
+	       column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 	           
 	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
 	        
