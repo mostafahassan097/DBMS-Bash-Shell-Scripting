@@ -43,7 +43,20 @@ then
 					echo $'========================================================================='
 					column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 					echo $'=========================================================================\n'	
-
+                        echo "Do you want tp update more records ? [Y/N]"
+						read answer
+						case $answer in
+							Y|y)
+							sleep 1;
+							. ./updateTB.sh;;
+							
+							N|n)
+							sleep 1;
+							. ./connectDB.sh;;
+							*) sleep 1; 
+							echo "Not Valid Option " 
+										
+						esac
 				fi
 		else
 			echo $'No such value in the table!'
