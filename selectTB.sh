@@ -10,7 +10,7 @@ function SpecificRecord(){
 			echo $'\nPlease enter a search value to select record(s): '
 			read value
 			echo $'========================================================================='
-			awk -v pat=$value '$0~pat{print $0}' $Path/$DBname/$TBname | column -t -s ' '
+			awk -v pat=$value '$0~pat{print $0}' $Path/$DBname/$TBname | cat 
 			echo $'========================================================================='
 }
 function AllRecordsSpecificField(){
@@ -28,7 +28,7 @@ function Query(){
 				1) AllRecords 
 				   break  ;;
 				2) SpecificRecord
-				   break  ;;
+				   break ;;
 				3) AllRecordsSpecificField
 				   break  ;;
 				*) echo "Not an Option !!" ;;

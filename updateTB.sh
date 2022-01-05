@@ -43,19 +43,23 @@ then
 					echo $'========================================================================='
 					column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 					echo $'=========================================================================\n'	
-                        echo "Do you want tp update more records ? [Y/N]"
+                        echo "Do you want to update more records ? [Y/N]"
 						read answer
 						case $answer in
 							Y|y)
+
 							. ./updateTB.sh;;
 							
 							N|n)
-							. ./main.sh;;
-
+							   sleep 2
+								clear 
+								sleep 2
+								echo "Back to connect to database"
+								. ./connectDB.sh
+								;;
 							*)echo "Not Valid Option " ;
-							  . ./main.sh
-							  ;; 
-							 
+				               . ./main.sh
+				               ;;
 							
 										
 						esac
