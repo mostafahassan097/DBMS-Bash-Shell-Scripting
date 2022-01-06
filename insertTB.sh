@@ -26,6 +26,7 @@ if [[ -f $Path/$DBname/$TBname ]]
 			fi
 	        done	
 		echo "Insert Done To $TBname"
+					column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 					sleep 1
 					echo "Do You Want To Insert More Records ? [y/n]"
 					read ans
