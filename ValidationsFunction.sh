@@ -15,7 +15,7 @@ then
 	fi
 elif [[ "$datatype" == *"string"* ]]
 then
-	str='^[:space:]]+[a-zA-Z]$'
+	str='^[a-zA-Z]+$'
 	if ! [[ $2 =~ $str ]]
 	then
 		echo "False input: Not a valid string!"
