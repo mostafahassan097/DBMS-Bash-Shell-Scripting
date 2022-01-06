@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 
 echo "Please Enter Table Name :";
 read TBname;
@@ -16,7 +15,7 @@ then
             sleep 2;
         echo "Please Enter Number Of Columns:";
         read num;
-        if [[ $num =~ ^[0-9]+$ ]]
+        if [[ $num =~ ^[0-9]+$ ]] && [ $num -ge 2 ]
         then
             flag=0;
                 for((i=1 ; i<=$num ; i++))
@@ -52,7 +51,7 @@ then
                 clear;
                 . ./connectDB.sh;
         else
-            echo "Sorry You Must Enter Number For Columns !!";
+            echo "Sorry You Must Enter Number For Columns and to be greater than 1 !!";
                 sleep 2;
                 . ./createTB.sh;
         fi;
