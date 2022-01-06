@@ -2,6 +2,10 @@
 function DeleteRecord(){
 	echo "Please Enter Field Number To Find Value: "
 	read field
+	num='^[0-9]+$'
+	x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
+if [[ $field =~ $num ]] && [ $field -le $x  ]
+then 
 	echo $'\n'
 	echo "$TBname Before Delete"
 					echo $'========================================================================='
@@ -22,6 +26,9 @@ function DeleteRecord(){
 		echo $'No such entry in that column!\n'
 		./deleteTB.sh
 	fi
+else echo "Field number shloud be integer value and less than number of feilds "
+     . ./deleteTB.sh
+fi 
 }
 
 function DeleteAllRecords(){

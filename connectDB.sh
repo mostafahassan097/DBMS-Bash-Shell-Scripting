@@ -9,7 +9,6 @@ then
     if [ -d $Path/$DBname ]
     then 
     echo "You Connected Succesfully To $DBname";
-	PS3="Please Enter Your Option :";
 	select opt in "Create Table" "List All Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back to Menu"
 	do
 		case $REPLY in 
