@@ -3,17 +3,16 @@ clear
 . ./ValidationsFunction.sh
 echo "Please Enter Table Name To Insert Data Into : "
 read TBname
-if [[ -f $Path/$DBname/$TBname ]]
+if [[ -f $Path/$DBname/$TBname ]] 
 	then
 	           
 	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
-	        
 			column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 			echo -e  >> $Path/$DBname/$TBname
 	        for((i=1;i <= x;i++)) 
 	        do      
 	        	colName=`grep PK $Path/$DBname/$TBname | cut -f$i -d" "`
-	        	
+	        	echo $colName
 	        	echo $"Please  Enter Data For Column NO.$i [$colName]"
 	        	read data 
 			checkDataType $i $data
