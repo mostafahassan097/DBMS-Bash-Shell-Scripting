@@ -5,7 +5,7 @@ datatype=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
 
 if [[ "$datatype" == *"int"* ]]
 then
-	num='^[0-9]+$'
+	num='^[0-9]+$'	
 	if ! [[ $2 =~ $num ]]
 	then
 		echo "Please Enter Numbers Only !!"
@@ -15,7 +15,7 @@ then
 	fi
 elif [[ "$datatype" == *"string"* ]]
 then
-	str='^[a-zA-Z]+$'
+	str=`^[:space:]]+[a-zA-Z]$`
 	if ! [[ $2 =~ $str ]]
 	then
 		echo "False input: Not a valid string!"
