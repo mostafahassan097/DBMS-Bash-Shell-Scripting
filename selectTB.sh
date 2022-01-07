@@ -10,7 +10,8 @@ function SpecificRecord(){
 			echo $'\nPlease enter a search value to select record(s): '
 			read value
 			echo $'========================================================================='
-			awk -v pat=$value '$0~pat{print $0}' $Path/$DBname/$TBname | cat 
+			#awk -v pat=$value '$0~pat{print $0}' $Path/$DBname/$TBname | cat 
+			awk "/$value/" $Path/$DBname/$TBname | cat 
 			echo $'========================================================================='
 }
 function AllRecordsSpecificField(){

@@ -14,7 +14,9 @@ then
 	echo "Please Enter Field Value To Delete Record(s): "
 	read value
 	echo $'\n'
-	if cut -f$field -d" " $Path/$DBname/$TBname | grep -w -q ${value} 
+	exist=`grep -E "$value" $Path/$DBname/$TBname | wc -l `
+	if ! [ exist -eq 0]
+	#if cut -f$field -d" " $Path/$DBname/$TBname | grep -w -q ${value}
 	then
 		sed -i "/$value/d" $Path/$DBname/$TBname
 		echo $'Record(s) deleted successfully!\n'
