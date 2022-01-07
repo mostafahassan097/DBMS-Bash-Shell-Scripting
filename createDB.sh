@@ -13,8 +13,8 @@ then
         sleep 2;
      read -p "Do You Want Create Tables [y\n]? " c
         case "$c" in 
-        y|Y ) echo "Yes" sleep 2 ; . ./createTB.sh;;
-        n|N ) echo "No" ; sleep 2 ; . ./main.sh;;
+        y|Y ) sleep 2 ; . ./createTB.sh;;
+        n|N ) sleep 2 ; . ./main.sh;;
         * ) echo "Not An Option !!";;
         esac
     fi;

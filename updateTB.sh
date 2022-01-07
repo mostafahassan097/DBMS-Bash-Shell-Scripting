@@ -9,7 +9,7 @@ then
 	echo $'\n'
 	echo "Please enter field number to update: "
 	read fieldnum
-	fields=`awk '{print NF}' $Path/$DBname/$TBname | head -1`
+	fields=`awk '{print NF}' $Path/$DBname/$TBname | head -1`  #get number of columns
 	if [[ $fieldnum -gt $fields || $fieldnum -lt 1 ]]
 	then
 		echo "Incorrect field number. Redirecting.."
@@ -37,7 +37,6 @@ then
 				else	
 					 awk -v oldval=$old -v newval=$new -v colnum=$fieldnum -i inplace '{ gsub(oldval, newval, $colnum) }; { print }' $Path/$DBname/$TBname
 					echo $'Record(s) updated successfully!'
-
 					echo $'\n'
 					echo "$TBname After Updated"
 					echo $'========================================================================='

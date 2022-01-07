@@ -1,7 +1,7 @@
 #!/bin/bash
 #Check DateType
 function checkDataType() {
-datatype=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
+datatype=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "` #print one of feild for ex :name:string: 
 
 if [[ "$datatype" == *"int"* ]]
 then
@@ -13,7 +13,7 @@ then
 	else
 		checkPK $1 $2
 	fi
-elif [[ "$datatype" == *"string"* ]]
+elif [[ "$datatype" == *"string"* ]] #match if wor string exist in datatype variable 
 then
 	str='^[a-zA-Z]+$'
 	#str='[[:space:]]+[[alpha]]$'
@@ -29,12 +29,14 @@ fi
 
 #Check Primary Key function
 function checkPK() {
-header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "`
-if [[ "$header" == *"PK"* ]]; then if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
-then
-	echo $'\nPrimary Key already exists. no duplicates allowed!' 
-	return 1
-fi
+header=`grep PK $Path/$DBname/$TBname | cut -f$1 -d" "` #return all feild that containing primary key
+if [[ "$header" == *"PK"* ]]
+then 
+	if [[ `cut -f$1 -d" " $Path/$DBname/$TBname | grep -w $2` ]]
+	then
+		echo $'\nPrimary Key already exists. no duplicates allowed!' 
+		return 1
+	fi
 fi
 }
 

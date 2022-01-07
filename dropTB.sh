@@ -7,9 +7,9 @@ echo "Please Enter Table Name You Want Delete:"
 read TBname
 if [ -f  $Path/$DBname/$TBname ]
 then
-    echo "Are you sure you want to delete $TBname"
+    echo "Are you sure you want to delete $TBname [y/n]"
     read choice
-            case $choice in
+            case $choice in 
             y|Y) 
                 rm $Path/$DBname/$TBname
                 echo "$TBname Deleted Successfully"

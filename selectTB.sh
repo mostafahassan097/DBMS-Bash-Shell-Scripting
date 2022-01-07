@@ -38,7 +38,7 @@ function Query(){
 	
 }
 
-		echo "Please Enter Table Name To Select Date Form: "
+		echo "Please Enter Table Name To Select Data From: "
 		read TBname
 if [[ -f $Path/$DBname/$TBname ]]
 then
@@ -59,7 +59,8 @@ then
 				   break  ;;
 				3) . ./connectDB.sh
 				   break;;
-				*) echo "Not an Option !!" ;;
+				*) echo "Not an Option !!" 
+				    . ./connectDB.sh;;
 			esac
 		done
 	done

@@ -5,9 +5,7 @@ echo "Please Enter Table Name To Insert Data Into : "
 read TBname
 if [[ -f $Path/$DBname/$TBname ]] 
 	then
-	           
-	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w`
-			
+	        x=`grep 'PK' $Path/$DBname/$TBname | wc -w` #get number of feilds that each word separated by space
 			column -t -s ' '   $Path/$DBname/$TBname 2> /dev/null
 			echo -e  >> $Path/$DBname/$TBname
 	        for((i=1;i <= x;i++)) 
